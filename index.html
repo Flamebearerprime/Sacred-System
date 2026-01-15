@@ -16,10 +16,7 @@
       --glow: linear-gradient(90deg,#ff4ecd,#9f8cff);
     }
 
-    * {
-      box-sizing: border-box;
-      font-family: -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
-    }
+    * { box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Inter", sans-serif; }
 
     body {
       margin: 0;
@@ -27,101 +24,50 @@
       background: radial-gradient(circle at top, var(--bg-mid), var(--bg-start), var(--bg-end));
     }
 
-    .wrap {
-      max-width: 420px;
-      margin: 0 auto;
-      padding: 24px 16px 80px;
-    }
+    .wrap { max-width: 420px; margin: 0 auto; padding: 24px 16px 80px; }
 
     /* ===== HEADER ===== */
-    .header {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 24px;
-    }
+    .header { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
 
     .logo {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
+      width: 40px; height: 40px; border-radius: 50%;
       background: radial-gradient(circle at 30% 30%, #ffcc66, #ff7a18);
-      display: grid;
-      place-items: center;
-      font-weight: 900;
+      display: grid; place-items: center; font-weight: 900;
     }
 
-    .brand h1 {
-      margin: 0;
-      font-size: 18px;
-      letter-spacing: 1px;
-    }
-
-    .brand p {
-      margin: 0;
-      font-size: 12px;
-      color: var(--muted);
-    }
+    .brand h1 { margin: 0; font-size: 18px; letter-spacing: 1px; }
+    .brand p { margin: 0; font-size: 12px; color: var(--muted); }
 
     /* ===== HERO ===== */
     .hero {
       background: linear-gradient(160deg,#6a2fb8,#3a165f);
-      border-radius: 24px;
-      padding: 24px;
+      border-radius: 24px; padding: 24px;
       box-shadow: 0 30px 80px rgba(0,0,0,0.4);
       margin-bottom: 32px;
     }
 
-    .hero .tag {
-      font-size: 12px;
-      letter-spacing: 2px;
-      opacity: 0.8;
-    }
-
-    .hero h2 {
-      font-size: 36px;
-      line-height: 1.05;
-      margin: 12px 0;
-    }
-
-    .hero p {
-      color: var(--muted);
-      line-height: 1.6;
-    }
+    .hero .tag { font-size: 12px; letter-spacing: 2px; opacity: 0.8; }
+    .hero h2 { font-size: 36px; line-height: 1.05; margin: 12px 0; }
+    .hero p { color: var(--muted); line-height: 1.6; }
 
     /* ===== WAITLIST ===== */
-    .waitlist {
-      margin-top: 20px;
-      display: grid;
-      gap: 12px;
-    }
-
-    .waitlist a {
-      text-decoration: none;
-    }
+    .waitlist { margin-top: 20px; display: grid; gap: 12px; }
+    .waitlist a { text-decoration: none; }
 
     .email {
       background: rgba(0,0,0,0.3);
-      border-radius: 14px;
-      padding: 14px;
-      color: var(--muted);
-      font-size: 14px;
+      border-radius: 14px; padding: 14px;
+      color: var(--muted); font-size: 14px;
     }
 
     .btn {
-      border-radius: 18px;
-      padding: 16px;
-      text-align: center;
-      font-weight: 700;
-      background: var(--glow);
-      color: #fff;
+      border-radius: 18px; padding: 16px;
+      text-align: center; font-weight: 700;
+      background: var(--glow); color: #fff;
       box-shadow: 0 10px 30px rgba(255,78,205,0.4);
     }
 
-    .btn.secondary {
-      background: linear-gradient(90deg,#ff7a18,#ffb347);
-      opacity: 0.6;
-    }
+    .btn.secondary { background: linear-gradient(90deg,#ff7a18,#ffb347); opacity: 0.6; }
 
     /* ===== ART SECTIONS ===== */
     .card {
@@ -131,46 +77,46 @@
       margin-bottom: 24px;
     }
 
-    .card h3 {
-      margin: 0 0 12px;
-      font-size: 18px;
-    }
+    .card h3 { margin: 0 0 12px; font-size: 18px; }
 
-    .card img {
+    /* The “frame” that crops the art */
+    .art {
       width: 100%;
       border-radius: 18px;
-      display: block;
+      overflow: hidden;
+      background: rgba(0,0,0,0.25);
     }
 
-    .caption {
-      margin-top: 10px;
-      text-align: center;
-      font-size: 13px;
-      color: var(--muted);
+    /* Default: character portrait frame (taller) */
+    .art.portrait { aspect-ratio: 4 / 5; }   /* tall, no black bars */
+    /* Wide scenes: family + realms */
+    .art.wide { aspect-ratio: 16 / 9; }      /* cinematic, clean */
+
+    .art img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;          /* this is the magic */
+      object-position: center;    /* we can tune per image below */
     }
+
+    /* Fine-tune focal points so heads/crowns stay visible */
+    .art.queen img { object-position: 50% 20%; }  /* bias up for crown */
+    .art.mage  img { object-position: 50% 25%; }  /* slightly up */
+    .art.family img { object-position: 50% 60%; } /* bias down to keep kids */
+    .art.temple img { object-position: 50% 50%; } /* centered */
+
+    .caption { margin-top: 10px; text-align: center; font-size: 13px; color: var(--muted); }
 
     /* ===== FOOTER ===== */
-    footer {
-      text-align: center;
-      margin-top: 40px;
-      font-size: 12px;
-      color: var(--muted);
-    }
+    footer { text-align: center; margin-top: 40px; font-size: 12px; color: var(--muted); }
 
     .badges {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin: 16px 0;
+      display: flex; justify-content: center;
+      gap: 10px; flex-wrap: wrap; margin: 16px 0;
     }
 
-    .badge {
-      padding: 8px 14px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.08);
-      font-size: 12px;
-    }
+    .badge { padding: 8px 14px; border-radius: 999px; background: rgba(255,255,255,0.08); font-size: 12px; }
   </style>
 </head>
 
@@ -211,28 +157,36 @@
     <!-- ART: RADIANT QUEEN -->
     <section class="card">
       <h3>Radiant Queen character artwork</h3>
-      <img src="assets/radiant-queen.PNG" alt="Radiant Queen" />
+      <div class="art portrait queen">
+        <img src="assets/radiant-queen.PNG" alt="Radiant Queen" />
+      </div>
       <div class="caption">Flameheart: nurture, beauty, and power.</div>
     </section>
 
     <!-- ART: GREEN MAGE -->
     <section class="card">
-      <h3>Green Mage character artwork</h3>
-      <img src="assets/Green-mage.PNG" alt="Green Mage" />
+      <h3>Flamebearer Green Mage character artwork</h3>
+      <div class="art portrait mage">
+        <img src="assets/Green-mage.PNG" alt="Green Mage" />
+      </div>
       <div class="caption">Guide: quests, clarity, and protection.</div>
     </section>
 
     <!-- ART: HERO FAMILY -->
     <section class="card">
       <h3>Hero family cosmic artwork</h3>
-      <img src="assets/Hero-Family.PNG" alt="Hero Family" />
+      <div class="art wide family">
+        <img src="assets/Hero-Family.PNG" alt="Hero Family" />
+      </div>
       <div class="caption">Hearth: family, warmth, and wonder.</div>
     </section>
 
     <!-- ART: FLAME TEMPLE -->
     <section class="card">
       <h3>Flame Temple realm artwork</h3>
-      <img src="assets/flame-temple.jpg" alt="Flame Temple" />
+      <div class="art wide temple">
+        <img src="assets/flame-temple.jpg" alt="Flame Temple" />
+      </div>
       <div class="caption">Realm Preview: the Flame Temple.</div>
     </section>
 
