@@ -1,189 +1,389 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sacred System</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sacred System — We’re Igniting Soon</title>
 
   <style>
-    :root {
-      --bg: #0e0b1f;
-      --card: rgba(255,255,255,0.06);
-      --border: rgba(255,255,255,0.12);
-      --text: #f4f1ff;
-      --muted: #c8c2e6;
-      --accent: #ff7ad9;
+    :root{
+      --bg0:#0b0716;
+      --bg1:#120a22;
+      --card:#1a1030cc;
+      --card2:#231245cc;
+      --stroke:rgba(255,255,255,.10);
+      --text:rgba(255,255,255,.92);
+      --muted:rgba(255,255,255,.70);
+      --muted2:rgba(255,255,255,.55);
+      --glow:rgba(255,170,255,.18);
+      --btnA:#ff4fd8;
+      --btnB:#7aa7ff;
+      --shadow: 0 24px 80px rgba(0,0,0,.55);
+      --radius: 22px;
+      --radius2: 16px;
+      --max: 980px;
     }
 
-    * {
-      box-sizing: border-box;
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--text);
+      background:
+        radial-gradient(1200px 700px at 30% 10%, rgba(255,90,220,.20), transparent 60%),
+        radial-gradient(900px 600px at 80% 35%, rgba(120,170,255,.18), transparent 60%),
+        radial-gradient(800px 800px at 50% 95%, rgba(255,160,80,.10), transparent 55%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      overflow-x:hidden;
     }
 
-    body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background: radial-gradient(circle at top, #3a145f, var(--bg));
-      color: var(--text);
-    }
-
-    .container {
-      max-width: 420px;
+    a{color:inherit}
+    .wrap{
+      width: min(var(--max), calc(100% - 32px));
       margin: 0 auto;
-      padding: 20px;
+      padding: 28px 0 60px;
     }
 
-    header {
-      margin-bottom: 24px;
+    /* Top brand row */
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      padding: 10px 6px 18px;
+      opacity:.98;
+    }
+    .mark{
+      width:42px;height:42px;border-radius:14px;
+      background:
+        radial-gradient(16px 16px at 30% 30%, rgba(255,255,255,.35), transparent 60%),
+        linear-gradient(135deg, rgba(255,90,220,.95), rgba(110,160,255,.95));
+      box-shadow: 0 12px 32px rgba(255,90,220,.12);
+      border:1px solid rgba(255,255,255,.10);
+      flex:0 0 auto;
+    }
+    .brand h1{
+      font-size: 22px;
+      letter-spacing:.12em;
+      margin:0;
+      text-transform:uppercase;
+      line-height:1.1;
+    }
+    .brand p{
+      margin:4px 0 0;
+      color:var(--muted2);
+      letter-spacing:.06em;
+      text-transform:uppercase;
+      font-size:12px;
     }
 
-    header h1 {
-      margin: 0;
-      font-size: 1.2rem;
-      letter-spacing: 0.1em;
+    /* Hero card (Version A vibe) */
+    .hero{
+      position:relative;
+      border-radius: calc(var(--radius) + 6px);
+      background:
+        radial-gradient(900px 500px at 20% 20%, rgba(255,90,220,.18), transparent 55%),
+        radial-gradient(700px 500px at 90% 10%, rgba(120,170,255,.16), transparent 55%),
+        linear-gradient(180deg, rgba(140,70,255,.28), rgba(70,20,120,.20));
+      border:1px solid var(--stroke);
+      box-shadow: var(--shadow);
+      padding: 28px 22px;
+      overflow:hidden;
     }
-
-    header p {
-      margin: 4px 0 0;
+    .hero:before{
+      content:"";
+      position:absolute; inset:-2px;
+      background: radial-gradient(500px 300px at 50% 0%, rgba(255,255,255,.08), transparent 70%);
+      pointer-events:none;
+    }
+    .eyebrow{
+      font-size:12px;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+      color:var(--muted);
+      margin:0 0 12px;
+    }
+    .big{
+      font-size: clamp(40px, 7vw, 68px);
+      letter-spacing:.02em;
+      margin:0;
+      font-weight:800;
+      line-height: .95;
+      text-transform:uppercase;
+      text-shadow: 0 12px 40px rgba(0,0,0,.45);
+    }
+    .tagline{
+      margin: 14px 0 10px;
+      font-size: 22px;
+      font-weight:800;
+      color: rgba(255,255,255,.90);
+      letter-spacing:.01em;
+    }
+    .copy{
+      margin: 10px 0 18px;
       color: var(--muted);
-      font-size: 0.9rem;
+      font-size: 16px;
+      line-height:1.55;
+      max-width: 62ch;
     }
 
-    .hero {
-      background: linear-gradient(135deg, #7a2bbd, #3b1c6b);
-      border-radius: 20px;
-      padding: 24px;
-      margin-bottom: 24px;
+    .actions{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      align-items:stretch;
+      margin-top: 14px;
+    }
+    .input{
+      flex: 1 1 240px;
+      min-width: 220px;
+      display:flex;
+      align-items:center;
+      padding: 14px 14px;
+      border-radius: 16px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.22);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.06);
+    }
+    .input input{
+      width:100%;
+      background:transparent;
+      border:0;
+      outline:0;
+      color:var(--text);
+      font-size:15px;
+    }
+    .btn{
+      border:0;
+      cursor:pointer;
+      border-radius: 16px;
+      padding: 14px 18px;
+      font-weight:800;
+      letter-spacing:.01em;
+      color: rgba(255,255,255,.92);
+      box-shadow: 0 18px 40px rgba(0,0,0,.25);
+      border:1px solid rgba(255,255,255,.12);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      min-width: 220px;
+      user-select:none;
+    }
+    .btn.primary{
+      background: linear-gradient(90deg, rgba(255,79,216,.95), rgba(122,167,255,.92));
+    }
+    .btn.secondary{
+      background: rgba(0,0,0,.18);
+      color: rgba(255,255,255,.72);
+      border:1px solid rgba(255,255,255,.10);
+    }
+    .btn.secondary[aria-disabled="true"]{
+      opacity:.75;
+      cursor:not-allowed;
     }
 
-    .hero small {
-      letter-spacing: 0.15em;
-      opacity: 0.8;
+    .pills{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top: 18px;
     }
-
-    .hero h2 {
-      margin: 12px 0;
-      font-size: 2rem;
-      line-height: 1.1;
-    }
-
-    .hero p {
-      color: var(--muted);
-      font-size: 0.95rem;
-    }
-
-    .input {
-      margin-top: 16px;
-    }
-
-    input {
-      width: 100%;
-      padding: 14px;
-      border-radius: 12px;
-      border: none;
-      outline: none;
-      background: rgba(0,0,0,0.25);
-      color: var(--text);
-      margin-bottom: 12px;
-    }
-
-    button {
-      width: 100%;
-      padding: 14px;
-      border-radius: 14px;
-      border: none;
-      background: linear-gradient(135deg, #ff7ad9, #b96bff);
-      color: #fff;
-      font-weight: bold;
-      font-size: 1rem;
-    }
-
-    .soon {
-      margin-top: 12px;
-      background: rgba(0,0,0,0.25);
-      opacity: 0.6;
-    }
-
-    .card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 16px;
-      margin-bottom: 20px;
-    }
-
-    .card h3 {
-      margin: 0 0 12px;
-      font-size: 1rem;
-    }
-
-    .card img {
-      width: 100%;
-      border-radius: 14px;
-      margin-bottom: 12px;
-    }
-
-    .tag {
-      background: rgba(0,0,0,0.3);
+    .pill{
+      padding: 10px 12px;
       border-radius: 999px;
-      padding: 8px 12px;
-      font-size: 0.85rem;
-      text-align: center;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.16);
+      color: rgba(255,255,255,.76);
+      font-size: 13px;
+      display:flex;
+      align-items:center;
+      gap:8px;
     }
 
-    footer {
-      margin-top: 32px;
-      text-align: center;
-      color: var(--muted);
-      font-size: 0.8rem;
+    /* Section cards (Version B image blocks) */
+    .grid{
+      margin-top: 22px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    .card{
+      border-radius: var(--radius);
+      border:1px solid var(--stroke);
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(0,0,0,.12));
+      box-shadow: 0 18px 55px rgba(0,0,0,.35);
+      overflow:hidden;
+    }
+    .card .head{
+      padding: 18px 18px 14px;
+      font-weight:800;
+      font-size: 20px;
+      color: rgba(255,255,255,.90);
+    }
+    .frame{
+      margin: 0 18px 12px;
+      border-radius: 18px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.30);
+      overflow:hidden;
+    }
+    .frame img{
+      width:100%;
+      height:auto;
+      display:block;
+    }
+    .note{
+      margin: 0 18px 18px;
+      border-radius: 999px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.16);
+      padding: 12px 14px;
+      color: rgba(255,255,255,.72);
+      font-size: 14px;
+      text-align:center;
+    }
+
+    /* Feature bullets */
+    .features{
+      margin-top: 18px;
+      display:grid;
+      gap: 12px;
+    }
+    .feature{
+      border-radius: var(--radius);
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.14);
+      padding: 16px 16px;
+    }
+    .feature b{
+      display:block;
+      font-size: 18px;
+      margin-bottom: 6px;
+      color: rgba(255,255,255,.88);
+    }
+    .feature span{
+      color: rgba(255,255,255,.62);
+      line-height:1.55;
+      display:block;
+    }
+
+    footer{
+      margin-top: 26px;
+      text-align:center;
+      color: rgba(255,255,255,.55);
+      font-size: 13px;
+      letter-spacing:.02em;
+    }
+
+    /* Desktop tweaks */
+    @media (min-width: 900px){
+      .hero{padding: 34px 30px}
+      .grid{grid-template-columns: 1fr 1fr}
+      .card.full{grid-column: 1 / -1;}
     }
   </style>
 </head>
 
 <body>
-  <div class="container">
+  <div class="wrap">
 
-    <header>
-      <h1>SACRED SYSTEM</h1>
-      <p>A sacred gameworld for real life</p>
-    </header>
+    <div class="brand">
+      <div class="mark" aria-hidden="true"></div>
+      <div>
+        <h1>Sacred System</h1>
+        <p>A sacred gameworld for real life</p>
+      </div>
+    </div>
 
     <section class="hero">
-      <small>WE’RE IGNITING SOON</small>
-      <h2>Cozy at the hearth.<br>Epic by design.</h2>
-      <p>
-        Rest in warmth, log your moments, and level up with your circle.
-        Or step beyond the flame into quests, relics, and thrilling RPG adventure.
+      <p class="eyebrow">We’re igniting soon</p>
+      <h2 class="big">We’re<br/>Igniting<br/>Soon</h2>
+
+      <div class="tagline">Cozy at the hearth. Epic by design.</div>
+
+      <p class="copy">
+        Rest in warmth, log your moments, and level up with your circle. Or step beyond the flame into quests,
+        relics, and thrilling RPG adventure. The Sacred System adapts to you, whether you seek gentle rhythm
+        or a legendary saga across realms of the Multiverse.
       </p>
 
-      <div class="input">
-        <input type="email" placeholder="Enter email for early access" />
-        <button>✨ Join the Waitlist</button>
-        <button class="soon">🔥 Enter the Hub (soon)</button>
+      <form class="actions" onsubmit="return false;">
+        <div class="input">
+          <input type="email" placeholder="Enter email for early access" autocomplete="email" />
+        </div>
+        <button class="btn primary" type="button" onclick="alert('Waitlist form is placeholder for now.');">
+          ✨ Join the Waitlist
+        </button>
+        <button class="btn secondary" type="button" aria-disabled="true" title="Coming soon">
+          🔥 Enter the Hub (soon)
+        </button>
+      </form>
+
+      <div class="pills" aria-label="Badges">
+        <div class="pill">⚡ <span>Private Alpha</span></div>
+        <div class="pill">👥 <span>Circle-first</span></div>
+        <div class="pill">🛡️ <span>Privacy-respecting</span></div>
       </div>
     </section>
 
-    <section class="card">
-      <h3>Radiant Queen character artwork</h3>
-      <img src="assets/radiant-queen.PNG" alt="Radiant Queen artwork">
-      <div class="tag">Flameheart: nurture, beauty, and power.</div>
-    </section>
+    <div class="features">
+      <div class="feature">
+        <b>Real life becomes progress</b>
+        <span>Feeds, naps, routines, rituals, tasks, and magic moments turn into XP, streaks, and unlocks.</span>
+      </div>
+      <div class="feature">
+        <b>Your circle is the engine</b>
+        <span>Solo, Duo, or Hearth. Build a circle that reflects your reality, then grow together.</span>
+      </div>
+      <div class="feature">
+        <b>Adventure is optional, always there</b>
+        <span>Stay cozy with gentle rhythm or step into quests, relics, realms, and the deeper game layer.</span>
+      </div>
+      <div class="feature">
+        <b>Partner with us</b>
+        <span>
+          If you build, design, write, or want to collaborate, we’re assembling allies for the first realms.
+          For now, join the waitlist and reply to the confirmation email with “Partner” (until the form is live).
+        </span>
+      </div>
+    </div>
 
-    <section class="card">
-      <h3>Green Mage character artwork</h3>
-      <img src="assets/Green-mage.PNG" alt="Green Mage artwork">
-      <div class="tag">Guide: quests, clarity, and protection.</div>
-    </section>
+    <!-- VERSION B: image cards (now properly merged + using your exact filenames) -->
+    <section class="grid" aria-label="Artwork preview cards">
 
-    <section class="card">
-      <h3>Hero family cosmic artwork</h3>
-      <img src="assets/Hero-Family.PNG" alt="Hero Family artwork">
-      <div class="tag">Hearth: family, warmth, and wonder.</div>
-    </section>
+      <article class="card">
+        <div class="head">Radiant Queen character artwork</div>
+        <div class="frame">
+          <img src="assets/radiant-queen.PNG" alt="Radiant Queen character artwork">
+        </div>
+        <div class="note">Flameheart: nurture, beauty, and power.</div>
+      </article>
 
-    <section class="card">
-      <h3>Flame Temple realm artwork</h3>
-      <img src="assets/flame-temple.jpg" alt="Flame Temple artwork">
-      <div class="tag">Realm Preview: the Flame Temple.</div>
+      <article class="card">
+        <div class="head">Green Mage character artwork</div>
+        <div class="frame">
+          <img src="assets/Green-mage.PNG" alt="Green Mage character artwork">
+        </div>
+        <div class="note">Guide: quests, clarity, and protection.</div>
+      </article>
+
+      <article class="card full">
+        <div class="head">Hero family cosmic artwork</div>
+        <div class="frame">
+          <img src="assets/Hero-Family.PNG" alt="Hero family cosmic artwork">
+        </div>
+        <div class="note">Hearth: family, warmth, and wonder.</div>
+      </article>
+
+      <article class="card full">
+        <div class="head">Flame Temple realm artwork</div>
+        <div class="frame">
+          <img src="assets/flame-temple.jpg" alt="Flame Temple realm artwork">
+        </div>
+        <div class="note">Realm Preview: the Flame Temple.</div>
+      </article>
+
     </section>
 
     <footer>
